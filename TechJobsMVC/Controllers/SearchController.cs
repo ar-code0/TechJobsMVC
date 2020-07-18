@@ -40,7 +40,7 @@ namespace TechJobsMVC.Controllers
                 jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
             }
 
-            if (jobs.Count > 0)
+            if (jobs.Count >= 0)
             {
                 ViewBag.condition = true;
             }
