@@ -1,11 +1,11 @@
 ﻿<div class="container body-content">
-    <h2>View jobs by:</h2>
-    <ul>
+    <h3 class="p-3 bg-secondary text-light text-center border border-info" >View jobs by:</h3>
+    <ul class="list-group">
         @foreach (var action in ViewBag.actions)
         {
-            <li>
-                <a href="/@action.Key">@action.Value</a>
-            </li>
+@*            <li>
+*@                <a class="list-group-item list-group-item-action" href="/@action.Key">@action.Value</a>
+@*            </li>*@
 
         }
     </ul>

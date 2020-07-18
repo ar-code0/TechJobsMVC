@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TechJobsMVC.Data;
 using TechJobsMVC.Models;
@@ -30,6 +31,7 @@ namespace TechJobsMVC.Controllers
 
         public IActionResult Index()
         {
+            List<Job> AllEntries = JobData.FindAll();
             ViewBag.columns = ColumnChoices;
             ViewBag.tableChoices = TableChoices;
             ViewBag.employers = JobData.GetAllEmployers();
@@ -37,7 +39,7 @@ namespace TechJobsMVC.Controllers
             ViewBag.positionTypes = JobData.GetAllPositionTypes();
             ViewBag.skills = JobData.GetAllCoreCompetencies();
 
-            return View();
+            return View(AllEntries);
         }
 
         // list jobs by column and value
@@ -56,6 +58,13 @@ namespace TechJobsMVC.Controllers
             }
             ViewBag.jobs = jobs;
 
+            return View();
+        }
+
+        public IActionResult Results(string searchTerm)
+        {
+            List<Job> jobs = JobData.FindByValue(searchTerm);
+            ViewBag.jobs = jobs;
             return View();
         }
 

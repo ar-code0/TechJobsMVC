@@ -1,10 +1,41 @@
-﻿<div class="container body-content">
+﻿@*<div class="container body-content">*@
 
-    <h1>@ViewBag.title</h1>
+<h3 class=" p-3 bg-secondary text-light text-center border border-info">@ViewBag.title</h3>
+<br />
+@if (ViewBag.jobs.Count == 0)
+{
+    <p>** No entries **</p>
+}
+else if (ViewBag.jobs.Count == 1)
+{
+    <p>** <span class="text-danger">1</span> entry **</p>
+}
+else
+{
+    <p>** <span class="text-danger">@ViewBag.jobs.Count</span> entries **</p>
+}
 
-    @{
-        //TODO #1: Use a loop to display job results in a table.
-    }
+@{
+    //TODO #1: Use a loop to display job results in a table.
+}
 
+<div class="container">
+    <div class="row">
+        @foreach (var job in ViewBag.jobs)
+        {
 
+            <div class="col-md-4 ">
+                <div class="card border border-warning m-2">
+                    <div class="card-header bg-info text-light">ID: @job.Id</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><span class="text-info">Name:</span> @job.Name</li>
+                        <li class="list-group-item bg-light"><span class="text-info">Employer:</span> <span>@job.Employer</span></li>
+                        <li class="list-group-item"><span class="text-info">Location:</span> @job.Location</li>
+                        <li class="list-group-item bg-light"><span class="text-danger">Psition Type:</span> @job.PositionType</li>
+                        <li class="list-group-item"><span class="text-info">Skill:</span> @job.CoreCompetency</li>
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
 </div>

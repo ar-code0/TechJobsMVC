@@ -1,11 +1,13 @@
-﻿<div class="container body-content">
-    <h1>@ViewBag.title</h1>
-    <h2 class="centered">View Jobs By Category</h2>
-</div>
+﻿
+
+    <div class="container body-content">
+        <h3>@ViewBag.title</h3>
+        <h3 class="p-3 bg-secondary text-light text-center border border-info">View Jobs By Category</h3><br />
+    </div>
 
 <table class="centeredTable">
-    <tr>
-        @foreach(var column in ViewBag.columns)
+    <tr class="bg-info text-light border border-warning">
+        @foreach (var column in ViewBag.columns)
         {
             <th>@column.Value</th>
         }
@@ -15,19 +17,22 @@
             //TODO #2: Complete the View Jobs By Category Table
         }
 
-        <td></td> @* Feel free to remove or modify this element if necessary. *@
+        <td class="list-group">
+            <a class="list-group-item list-group-item-action" asp-controller="List" asp-action="Jobs" asp-route-column="All" asp-route-value="all">All</a>
+        </td> @* Feel free to remove or modify this element if necessary. *@
         @foreach (var category in ViewBag.tableChoices)
         {
             <td>
-                <ul>
+                <div class="list-group">
                     @foreach (var item in category.Value)
                     {
-                        <li>
-                            <a asp-controller="List" asp-action="Jobs" asp-route-column="@category.Key" asp-route-value="@item">@item</a>
-                        </li>
-                    }
-                </ul>
+@*                        <li>
+*@                            <a class="list-group-item list-group-item-action bg-light border border-info" asp-controller="List" asp-action="Jobs" asp-route-column="@category.Key" asp-route-value="@item">@item</a><br />
+@*                        </li>
+*@                    }
+                </div>
             </td>
         }
     </tr>
-        </table>
+</table>
+

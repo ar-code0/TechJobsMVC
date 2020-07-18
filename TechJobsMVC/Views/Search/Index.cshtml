@@ -2,8 +2,8 @@
 
     <h1>@ViewBag.title</h1>
 
-    <form action="/search/results" method="post">
-        <h2>Search by:</h2>
+    <form action="/search" method="post">
+        <h3>Search by:</h3><br />
 
         <p>
             @foreach (var column in ViewBag.columns)
@@ -21,7 +21,7 @@
             <input type="text" name="searchTerm" id="searchTerm" />
         </p>
 
-        <input type="submit" value="Search" />
+        <input type="submit" value="Search" class="btn btn-primary"/>
     </form>
 
     <hr />
@@ -30,4 +30,39 @@
         //TODO #4: Loop over the search results to display all job fields.
     }
 
+    @if (ViewBag.condition)
+    {
+        @if (ViewBag.jobs.Count == 0)
+        {
+            <p>** No entries **</p>
+        }
+        else if(ViewBag.jobs.Count == 1)
+        {
+            <p>** <span class="text-danger">1</span> entry **</p>
+        }
+        else
+        {
+            <p>** <span class="text-danger">@ViewBag.jobs.Count</span> entries **</p>
+        }
+        <div class="container">
+            <div class="row">
+                @foreach (var job in ViewBag.jobs)
+                {
+
+                    <div class="col-md-4 ">
+                        <div class="card border border-warning m-2">
+                            <div class="card-header bg-info text-light">ID: @job.Id</div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><span class="text-info">Name:</span> @job.Name</li>
+                                <li class="list-group-item bg-light"><span class="text-info">Employer:</span> @job.Employer</li>
+                                <li class="list-group-item"><span class="text-info">Location:</span> @job.Location</li>
+                                <li class="list-group-item bg-light"><span class="text-danger">Psition Type:</span> @job.PositionType</li>
+                                <li class="list-group-item"><span class="text-info">Skill:</span> @job.CoreCompetency</li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
 </div>
