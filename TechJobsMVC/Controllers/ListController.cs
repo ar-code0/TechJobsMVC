@@ -61,12 +61,5 @@ namespace TechJobsMVC.Controllers
             return View();
         }
 
-        public IActionResult Results(string searchTerm)
-        {
-            List<Job> jobs = JobData.FindByValue(searchTerm);
-            ViewBag.jobs = jobs;
-            return View();
-        }
-
     }
 }

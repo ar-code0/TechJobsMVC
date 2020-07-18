@@ -8,10 +8,14 @@
         <p>
             @foreach (var column in ViewBag.columns)
             {
-                <span>
-                    <input type="radio" name="searchType" id="@column.Key" value="@column.Key" checked="@column.Key == 'all'" />
-                    <label for="@column.Key">@column.Value</label>
-                </span>
+            <span>
+                @if (@column.Key == @ViewBag.searchType)
+                { <input type="radio" name="searchType" id="@column.Key" value="@column.Key" checked /> }
+                else
+                { <input type="radio" name="searchType" id="@column.Key" value="@column.Key"/> }
+
+                <label for="@column.Key">@column.Value</label>
+            </span>
             }
 
         </p>
@@ -56,7 +60,7 @@
                                 <li class="list-group-item"><span class="text-info">Name:</span> @job.Name</li>
                                 <li class="list-group-item bg-light"><span class="text-info">Employer:</span> @job.Employer</li>
                                 <li class="list-group-item"><span class="text-info">Location:</span> @job.Location</li>
-                                <li class="list-group-item bg-light"><span class="text-danger">Psition Type:</span> @job.PositionType</li>
+                                <li class="list-group-item bg-light"><span class="text-danger">Position Type:</span> @job.PositionType</li>
                                 <li class="list-group-item"><span class="text-info">Skill:</span> @job.CoreCompetency</li>
                             </ul>
                         </div>
